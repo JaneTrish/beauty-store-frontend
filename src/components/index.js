@@ -1,7 +1,6 @@
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 import Footer from './Footer';
-import StripeCheckout from './StripeCheckout';
 import NavButtons from './NavButtons';
 import Contact from './Contact';
 import Featured from './Featured';
@@ -25,7 +24,6 @@ export {
   Navbar,
   Sidebar,
   Footer,
-  StripeCheckout,
   NavButtons,
   Contact,
   Featured,
