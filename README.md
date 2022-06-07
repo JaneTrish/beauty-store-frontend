@@ -1,5 +1,5 @@
 # Beauty Store
-Welcome to my full-stack e-commerce application (PERN).
+Welcome to my PERN-stack e-commerce application.
 
 You can check out the project here: https://beaty-store.herokuapp.com/
 A link to the API docs is here: https://beauty-ecommerce-api.herokuapp.com/
