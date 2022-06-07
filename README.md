@@ -16,10 +16,11 @@ The back-end of the application is Node framework **Express.js**, connected to t
 
 ## Features
 1. Frontend data is managed with React Context API.
-2. Custom user authentication built with a JWT bearer token ('jsonwebtoken' npm package https://www.npmjs.com/package/jsonwebtoken). 
-3. Most of the routes check user authentication and authorization.
-4. Users' passwords are hashed and salted with bcryptjs npm package (https://www.npmjs.com/package/bcryptjs).
-5. Server is connected to the database through node-postgres client (https://www.npmjs.com/package/pg).
+2. Styled-components library is used for styling the application (https://styled-components.com/).
+3. Custom user authentication built with a JWT bearer token ('jsonwebtoken' npm package https://www.npmjs.com/package/jsonwebtoken). 
+4. Most of the routes check user authentication and authorization.
+5. Users' passwords are hashed and salted with bcryptjs npm package (https://www.npmjs.com/package/bcryptjs).
+6. Server is connected to the database through node-postgres client (https://www.npmjs.com/package/pg).
 
 ### Future developments of the project
 
