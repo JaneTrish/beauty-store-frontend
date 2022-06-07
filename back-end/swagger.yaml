@@ -1,0 +1,741 @@
+openapi: 3.0.0
+info:
+  title: Beauty Store API
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://beauty-ecommerce-api.herokuapp.com/api/v1
+    variables: {}
+paths:
+  /products:
+    get:
+      tags:
+        - Products
+      summary: Get All Products
+      operationId: GetAllProducts
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    post:
+      tags:
+        - Products
+      summary: Create Product
+      operationId: CreateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductRequest'
+            example:
+              product_name: Lalalal
+              price: 1500
+              description: Gingerbread lollipop bear claw marshmallow marzipan. Danish chocolate pudding sweet pie pastry tiramisu apple pie. Powder muffin halvah candy canes marshmallow icing apple pie chocolate.
+              image: https://res.cloudinary.com/dyhpukepn/image/upload/v1645272417/beauty-store/body-13_evlq5p.jpg
+              stock: 0
+              category: body
+              rating: '1.0'
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /products/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The product ID
+    put:
+      tags:
+        - Products
+      summary: Update Product
+      operationId: UpdateProduct
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProductRequest'
+            example:
+              product_name: Aromatherapy Set
+              price: '1500'
+              description: Gingerbread lollipop bear claw marshmallow marzipan. Danish chocolate pudding sweet pie pastry tiramisu apple pie. Powder muffin halvah candy canes marshmallow icing apple pie chocolate.
+              image: https://res.cloudinary.com/dyhpukepn/image/upload/v1645272417/beauty-store/body-13_evlq5p.jpg
+              created_at: 2022-02-19T13:34:56.144Z
+              stock: 13
+              category: body
+              rating: '4.2'
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Products
+      summary: Get Single Product
+      operationId: GetSingleProduct
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+    delete:
+      tags:
+        - Products
+      summary: Delete Product
+      operationId: DeleteProduct
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout
+      operationId: Logout
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+            example:
+              email: sarah@mail.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers:
+            Set-Cookie:
+              description: >
+                Contains the session cookie named `token`.
+                Pass this cookie back in subsequent requests.
+              schema:
+                type: string
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register
+      operationId: Register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+            example:
+              user_name: brian
+              email: brian@mail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers:
+            Set-Cookie:
+              description: >
+                Contains the session cookie named `token`.
+                Pass this cookie back in subsequent requests.
+              schema:
+                type: string
+      deprecated: false
+      security: []
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get All Users
+      operationId: GetAllUsers
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/showMe:
+    get:
+      tags:
+        - Users
+      summary: Show Current User
+      operationId: ShowCurrentUser
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The user ID
+    get:
+      tags:
+        - Users
+      summary: Get User By ID
+      operationId: GetUserByID
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUser:
+    put:
+      tags:
+        - Users
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+            example:
+              user_name: Brian
+              email: brian@mail.com
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUserPassword:
+    put:
+      tags:
+        - Users
+      summary: Update User Password
+      operationId: UpdateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserPasswordRequest'
+            example:
+              oldPassword: secret
+              newPassword: password
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/deleteUser:
+    delete:
+      tags:
+        - Users
+      summary: Delete User
+      operationId: DeleteUser
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '204':
+          description: ''
+          headers: {}
+      deprecated: false
+  /cart:
+    post:
+      tags:
+        - Cart
+      summary: Create Cart
+      operationId: CreateCart
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCartRequest'
+            example:
+              cart_total: 0
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /cart/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The cart ID
+    delete:
+      tags:
+        - Cart
+      summary: Delete Cart
+      operationId: DeleteCart
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+    get:
+      tags:
+        - Cart
+      summary: Get All Cart Items
+      operationId: GetAllCartItems
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /cart/{id}/item:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The cart ID
+    post:
+      tags:
+        - Cart
+      summary: Add Item To Cart
+      operationId: AddItemToCart
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddItemToCartRequest'
+            example:
+              cart_id: 1d4bf226-f8c4-4e8f-b077-14e791b0e4c6
+              product_id: 7fa5af3d-5a3c-4ff3-8f92-71d216943eb9
+              cart_item_name: Parsley Seed Combo Pack
+              price: 2199
+              quantity: 1
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    put:
+      tags:
+        - Cart
+      summary: Update Cart Item
+      operationId: UpdateCartItem
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCartItemRequest'
+            example:
+              product_id: c0992f7c-4289-467a-b995-f19d53375b59
+              quantity: 5
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Cart
+      summary: Delete Cart Item
+      operationId: DeleteCartItem
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCartItemRequest'
+            example:
+              product_id: c0992f7c-4289-467a-b995-f19d53375b59
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+
+  /cart/{id}/checkout:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The cart ID
+    post:
+      tags:
+        - Cart
+      summary: Checkout
+      operationId: Checkout
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckoutRequest'
+            example:
+              shipping_name: Sarah
+              shipping_address: 1 Main Rd, Cape Town
+              phone: '0215796'
+              email: sarah@email.com
+              paid: 'false'
+        required: true
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /order:
+    get:
+      tags:
+        - Orders
+      summary: Get All Orders
+      operationId: GetAllOrders
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /order/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The order ID
+    get:
+      tags:
+        - Orders
+      summary: Get Single Order
+      operationId: GetSingleOrder
+      parameters: []
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: token
+  schemas:
+    CreateProductRequest:
+      title: CreateProductRequest
+      required:
+        - product_name
+        - price
+        - description
+        - image
+        - stock
+        - category
+        - rating
+      type: object
+      properties:
+        product_name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        image:
+          type: string
+        stock:
+          type: integer
+          format: int32
+        category:
+          type: string
+        rating:
+          type: string
+      example:
+        product_name: Lalalal
+        price: 1500
+        description: Gingerbread lollipop bear claw marshmallow marzipan. Danish chocolate pudding sweet pie pastry tiramisu apple pie. Powder muffin halvah candy canes marshmallow icing apple pie chocolate.
+        image: https://res.cloudinary.com/dyhpukepn/image/upload/v1645272417/beauty-store/body-13_evlq5p.jpg
+        stock: 0
+        category: body
+        rating: '1.0'
+    UpdateProductRequest:
+      title: UpdateProductRequest
+      required:
+        - product_name
+        - price
+        - description
+        - image
+        - created_at
+        - stock
+        - category
+        - rating
+      type: object
+      properties:
+        product_name:
+          type: string
+        price:
+          type: string
+        description:
+          type: string
+        image:
+          type: string
+        created_at:
+          type: string
+        stock:
+          type: integer
+          format: int32
+        category:
+          type: string
+        rating:
+          type: string
+      example:
+        product_name: Aromatherapy Set
+        price: '1500'
+        description: Gingerbread lollipop bear claw marshmallow marzipan. Danish chocolate pudding sweet pie pastry tiramisu apple pie. Powder muffin halvah candy canes marshmallow icing apple pie chocolate.
+        image: https://res.cloudinary.com/dyhpukepn/image/upload/v1645272417/beauty-store/body-13_evlq5p.jpg
+        created_at: 2022-02-19T13:34:56.144Z
+        stock: 13
+        category: body
+        rating: '4.2'
+    LoginRequest:
+      title: LoginRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: sarah@mail.com
+        password: password
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+        - user_name
+        - email
+        - password
+      type: object
+      properties:
+        user_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        user_name: brian
+        email: brian@mail.com
+        password: secret
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+        - user_name
+        - email
+      type: object
+      properties:
+        user_name:
+          type: string
+        email:
+          type: string
+      example:
+        user_name: Brian
+        email: brian@mail.com
+    UpdateUserPasswordRequest:
+      title: UpdateUserPasswordRequest
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: secret
+        newPassword: password
+    CreateCartRequest:
+      title: CreateCartRequest
+      required:
+        - cart_total
+      type: object
+      properties:
+        cart_total:
+          type: integer
+          format: int32
+      example:
+        cart_total: 0
+    AddItemToCartRequest:
+      title: AddItemToCartRequest
+      required:
+        - cart_id
+        - product_id
+        - cart_item_name
+        - price
+        - quantity
+      type: object
+      properties:
+        cart_id:
+          type: string
+        product_id:
+          type: string
+        cart_item_name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        quantity:
+          type: integer
+          format: int32
+      example:
+        cart_id: 1d4bf226-f8c4-4e8f-b077-14e791b0e4c6
+        product_id: 7fa5af3d-5a3c-4ff3-8f92-71d216943eb9
+        cart_item_name: Parsley Seed Combo Pack
+        price: 2199
+        quantity: 1
+    UpdateCartItemRequest:
+      title: UpdateCartItemRequest
+      required:
+        - product_id
+        - quantity
+      type: object
+      properties:
+        product_id:
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      example:
+        product_id: c0992f7c-4289-467a-b995-f19d53375b59
+        quantity: 5
+    DeleteCartItemRequest:
+      title: DeleteCartItemRequest
+      required:
+        - product_id
+      type: object
+      properties:
+        product_id:
+          type: string
+      example:
+        product_id: cb0a1ec4-27d1-4fed-a034-51ee70b564ee
+    CheckoutRequest:
+      title: CheckoutRequest
+      required:
+        - shipping_name
+        - shipping_address
+        - phone
+        - email
+        - paid
+      type: object
+      properties:
+        shipping_name:
+          type: string
+        shipping_address:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+        paid:
+          type: string
+      example:
+        shipping_name: Sarah
+        shipping_address: 1 Main Rd, Cape Town
+        phone: '0215796'
+        email: sarah@email.com
+        paid: 'false'
+tags:
+  - name: Products
+  - name: Auth
+  - name: Users
+  - name: Cart
+  - name: Orders
