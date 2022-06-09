@@ -24,5 +24,5 @@ The back-end of the application is Node framework **Express.js**, connected to t
 
 ### Future developments of the project
 
--add authentication with Google/Facebook/Twitter   
--connect to a payment gateway
+- add authentication with Google/Facebook/Twitter   
+- connect to a payment gateway
